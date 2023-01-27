@@ -7,15 +7,16 @@
 * [3. 
 
 
-## 1. Introducción del proyecto CiberFem
+##1. Introducción del proyecto CiberFem
 
 Esta Red Social....
 
 
-## 2. Historias de Usuario desarrolladas:
+##2. Historias de Usuario desarrolladas:
 
 ### 1) Inicio de sesión con Google
 
+*Crear secciones para la página de inicio de sesión
 *Autenticar con Firebase utilizando la cuenta de usuario de Google
 
 ### 2) Crear usuario 
@@ -32,7 +33,7 @@ Esta Red Social....
 *Poder dar 1 like a los post
 *Poder quitar like
 
-## 3. 
+##3. 
 
 
 
