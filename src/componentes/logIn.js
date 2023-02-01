@@ -6,6 +6,12 @@ export const logIn = (onNavigate) => {
   const inputEmail = document.createElement('input');
   const inputPsw = document.createElement('input');
 
+  //Aquí pusimos clases a los botones
+  homeButton.className = 'botones';
+  backButton.className = 'botones';
+  inputEmail.className = 'inputs';
+  inputPsw.className = 'inputs';
+
   homeButton.textContent = 'Entrar';
   backButton.textContent = 'Regresar al home';
   title.textContent = 'Inicia Sesión';

@@ -11,6 +11,12 @@ export const registro = (onNavigate) => {
   backButton.textContent = 'Regresar';
   title.textContent = 'Únete a la comunidad CiberFem';
 
+  //Aquí ponemos clases a los botones
+  buttonNewUser.className = 'botones';
+  backButton.className = 'botones';
+  inputEmail.className = 'inputs';
+  inputPsw.className = 'inputs';
+
   buttonNewUser.addEventListener('click', () => {
     onNavigate('/logIn');
   });

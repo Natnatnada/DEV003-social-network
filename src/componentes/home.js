@@ -6,6 +6,14 @@ export const home = (onNavigate) => {
   const logInButton = document.createElement('button');
   const logInGoogle = document.createElement('button');
 
+  //Aquí le dimos clases a los elementos
+  registerButton.className = 'botones';
+  logInButton.className = 'botones';
+  logInGoogle.className = 'botones';
+  title.className = 'titulo';
+  subTitle.className = 'subtitulo';
+  homeDiv.className = 'homediv'
+
   registerButton.textContent = 'Crea una cuenta';
   logInButton.textContent = 'Inicia sesión';
   title.textContent = '<CiberFem>';
