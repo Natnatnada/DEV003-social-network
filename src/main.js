@@ -1,20 +1,18 @@
-// eslint-disable-next-line import/no-cycle
 import { home } from './componentes/home.js';
-// eslint-disable-next-line import/no-cycle
 import { registro } from './componentes/registro.js';
-// eslint-disable-next-line import/no-cycle
 import { logIn } from './componentes/logIn.js';
-//import { feed } from './componentes/feed.js';
+import { feed } from './componentes/feed.js';
 
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': home,
-  '/logIn': logIn,
-  '/registro': registro,
+  '/': home(onNavigate),
+  '/logIn': logIn(onNavigate),
+  '/registro': registro(onNavigate),
+  '/feed': feed(onNavigate),
 };
 
-export const onNavigate = (pathname) => {
+function onNavigate(pathname) {
   window.history.pushState(
     {},
     pathname,
@@ -22,14 +20,13 @@ export const onNavigate = (pathname) => {
   );
 
   rootDiv.removeChild(rootDiv.firstChild);
-  rootDiv.appendChild(routes[pathname]());
+  rootDiv.appendChild(routes[pathname]);
 };
 
 const component = routes[window.location.pathname];
 
 window.onpopstate = () => {
   rootDiv.removeChild(rootDiv.firstChild);
-  rootDiv.append(component());
+  rootDiv.append(component);
 };
-rootDiv.appendChild(component());
-
+rootDiv.appendChild(component);
