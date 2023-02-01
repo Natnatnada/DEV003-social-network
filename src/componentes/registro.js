@@ -1,7 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { onNavigate } from '../main.js';
-
-export const registro = () => {
+export const registro = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h2');
   const buttonNewUser = document.createElement('button');
@@ -21,7 +18,7 @@ export const registro = () => {
     onNavigate('/');
   });
 
-  homeDiv.appendChild(title, inputEmail, inputPsw, buttonNewUser, backButton);
+  homeDiv.append(title, inputEmail, inputPsw, buttonNewUser, backButton);
 
   return homeDiv;
 };
