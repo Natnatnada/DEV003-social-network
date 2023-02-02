@@ -6,18 +6,24 @@ export const logIn = (onNavigate) => {
   const inputEmail = document.createElement('input');
   const inputPsw = document.createElement('input');
 
-  //Aquí pusimos clases a los botones
+  // Aquí pusimos clases  a los botones
   homeButton.className = 'botones';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
   inputPsw.className = 'inputs';
-
   homeButton.textContent = 'Entrar';
   backButton.textContent = 'Regresar al home';
   title.textContent = 'Inicia Sesión';
+  inputEmail.placeholder = 'ingresa tu email aqui';
+  inputPsw.placeholder = 'ingresa tu contraseña';
+  inputPsw.type = 'password';
 
   homeButton.addEventListener('click', () => {
     console.log(inputEmail.value);
+    onNavigate('/feed');
+  });
+  homeButton.addEventListener('click', () => {
+    console.log(inputPsw.value);
     onNavigate('/feed');
   });
   backButton.addEventListener('click', () => {
