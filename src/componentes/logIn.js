@@ -5,7 +5,6 @@ export const logIn = (onNavigate) => {
   const backButton = document.createElement('button');
   const inputEmail = document.createElement('input');
   const inputPsw = document.createElement('input');
-
   // Aquí pusimos clases  a los botones
   homeButton.className = 'botones';
   backButton.className = 'botones';
@@ -19,11 +18,11 @@ export const logIn = (onNavigate) => {
   inputPsw.type = 'password';
 
   homeButton.addEventListener('click', () => {
-    console.log(inputEmail.value);
+    //                          ;
     onNavigate('/feed');
   });
   homeButton.addEventListener('click', () => {
-    console.log(inputPsw.value);
+    //    console.log(inputPsw.value);
     onNavigate('/feed');
   });
   backButton.addEventListener('click', () => {
