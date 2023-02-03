@@ -5,3 +5,56 @@ body {
     font-family: 'Rasa', serif;
     color: rgb(144, 94, 150);
 }
+<<<<<<< HEAD
+=======
+
+.titulo {
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.subtitulo {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+}
+
+.botones {
+    background: rgb(222, 186, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 10px;
+    border: 10%;
+    margin: 30px;
+    margin-left: 25%;
+    font-family: 'Rasa', serif;
+    color: rgb(81, 36, 86);
+    font-size: large;
+
+}
+
+.inputs {
+    background: rgb(253, 253, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 10px;
+    border: 10%;
+    margin: 25px;
+    margin-left: 18%;
+    font-family: 'Rasa', serif;
+    color: rgb(81, 36, 86);
+    font-size: large;
+}
+
+
+>>>>>>> d9f153b01e6776cc4baa5dfc6dac97838046c12a

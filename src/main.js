@@ -21,7 +21,7 @@ function onNavigate(pathname) {
 
   rootDiv.removeChild(rootDiv.firstChild);
   rootDiv.appendChild(routes[pathname]);
-};
+}
 
 const component = routes[window.location.pathname];
 
