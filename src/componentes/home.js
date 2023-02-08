@@ -1,5 +1,6 @@
-// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+
 
 export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -32,21 +33,35 @@ export const home = (onNavigate) => {
     onNavigate('/logIn');
   });
 
+  logInGoogle.addEventListener('click', () => {
+    entrarConGoogle(onNavigate);
+  });
   homeDiv.append(title, subTitle, logInButton, logInGoogle, registerButton);
   return homeDiv;
 };
 
-/*
-const btnlogInGoogle = document.getElementById('logInGoogle');
-btnlogInGoogle.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const provider = new GoogleAuthProvider();
-  try {
-    const credentials = await signInWithPopup(auth, provider);
-    console.log(credentials);
-    console.log('google sign in');
-  } catch (error) {
-    console.log(error);
-  }
-});
-*/
+const provider = new GoogleAuthProvider();
+//const auth = getAuth();
+
+function entrarConGoogle(onNavigate) { //Nos falta hacer el llamado de la función que es logInGoogle
+  signInWithPopup(auth, provider)
+    .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      onNavigate('/feed');
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    }).catch((error) => {
+    // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+    });
+}
