@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300&display=swap');
 
+
 body {
     background-color: rgb(251, 250, 205);
-    font-family: 'Rasa', serif;
     color: rgb(144, 94, 150);
 }
-<<<<<<< HEAD
-=======
+
 
 .titulo {
     font-size: 4rem;
+    font-family: 'Rasa', serif;
     display: flex;
     justify-content: center;
     align-items:center;
 }
 
 .subtitulo {
+    font-family: 'Rasa', serif;
     font-size: 2rem;
     display: flex;
     justify-content: center;
@@ -28,15 +29,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10rem;
+    width: 11rem;
     height: 3rem;
     border-radius: 10px;
-    border: 10%;
+    /*border: 1%;*/
     margin: 30px;
     margin-left: 25%;
-    font-family: 'Rasa', serif;
+    font-family: 'Anton', sans-serif;
     color: rgb(81, 36, 86);
-    font-size: large;
+    font-size: 1rem;
+    font-weight: bold;
 
 }
 
@@ -48,13 +50,25 @@ body {
     width: 12rem;
     height: 2rem;
     border-radius: 10px;
-    border: 10%;
+    border: none;
     margin: 25px;
     margin-left: 18%;
-    font-family: 'Rasa', serif;
+    font-family: 'Anton', sans-serif;
     color: rgb(81, 36, 86);
-    font-size: large;
+    font-size: 1rem;
 }
 
+#btnlogInGoogle {
+    background-color: white;
+    color: gray;
+    border: none;
+}
 
->>>>>>> d9f153b01e6776cc4baa5dfc6dac97838046c12a
+.errors {
+    /*estilo*/
+    color: red;
+}
+
+.hide {
+    display: none;
+}
