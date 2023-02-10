@@ -1,8 +1,11 @@
-import { auth } from '../firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
+  const homeContainer = document.createElement('div');
+  const imgContainer = document.createElement('div');
+  const deskContainer = document.createElement('div');
   const title = document.createElement('h2');
   const subTitle = document.createElement('h2');
   const registerButton = document.createElement('button');
@@ -17,7 +20,9 @@ export const home = (onNavigate) => {
   title.className = 'titulo';
   subTitle.className = 'subtitulo';
   homeDiv.className = 'homediv';
-
+  deskContainer.className = 'deskContainer';
+  imgContainer.className = 'imgContainer';
+  homeContainer.className = 'homeContainer';
   registerButton.textContent = 'Crea una cuenta';
   logInButton.textContent = 'Inicia sesión';
   title.textContent = '<CiberFem>';
@@ -35,14 +40,16 @@ export const home = (onNavigate) => {
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
-  homeDiv.append(title, subTitle, logInButton, logInGoogle, registerButton);
+  homeContainer.append(logInButton, logInGoogle, registerButton);
+  deskContainer.append(homeContainer, imgContainer);
+  homeDiv.append(title, subTitle, deskContainer);
   return homeDiv;
 };
 
 const provider = new GoogleAuthProvider();
-//const auth = getAuth();
+// const auth = getAuth();
 
-function entrarConGoogle(onNavigate) { //Nos falta hacer el llamado de la función que es logInGoogle
+function entrarConGoogle(onNavigate) { // Nos falta hacer el llamado de la función que es logInGoogle
   signInWithPopup(auth, provider)
     .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
