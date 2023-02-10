@@ -1,8 +1,13 @@
-import { auth } from '../firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
+  const homeContainer = document.createElement('div');
+  const imgContainer = document.createElement('div');
+  const deskContainer = document.createElement('div');
+  //se crea div para insertar imagen del boton google
+ const googleimg = document.createElement('div');
   const title = document.createElement('h2');
   const subTitle = document.createElement('h2');
   const registerButton = document.createElement('button');
@@ -12,17 +17,21 @@ export const home = (onNavigate) => {
   // Aquí le dimos clases a los elementos
   registerButton.className = 'botones';
   logInButton.className = 'botones';
-  logInGoogle.className = 'botones';
+  logInGoogle.className = 'googleIcon';
+  //se asigna clase para dar estilo al div para el boton de google
+  googleimg.classList = 'googleIcon';
   logInGoogle.id = 'btnlogInGoogle';
   title.className = 'titulo';
   subTitle.className = 'subtitulo';
   homeDiv.className = 'homediv';
-
+  deskContainer.className = 'deskContainer';
+  imgContainer.className = 'imgContainer';
+  homeContainer.className = 'homeContainer';
   registerButton.textContent = 'Crea una cuenta';
   logInButton.textContent = 'Inicia sesión';
   title.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
-  logInGoogle.textContent = 'Inicia sesión con Google';
+
 
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
@@ -35,14 +44,16 @@ export const home = (onNavigate) => {
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
-  homeDiv.append(title, subTitle, logInButton, logInGoogle, registerButton);
+  homeContainer.append(logInButton, registerButton, logInGoogle);
+  deskContainer.append(imgContainer, homeContainer);
+  homeDiv.append(title, subTitle, deskContainer);
   return homeDiv;
 };
 
 const provider = new GoogleAuthProvider();
-//const auth = getAuth();
+// const auth = getAuth();
 
-function entrarConGoogle(onNavigate) { //Nos falta hacer el llamado de la función que es logInGoogle
+function entrarConGoogle(onNavigate) { // Nos falta hacer el llamado de la función que es logInGoogle
   signInWithPopup(auth, provider)
     .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
