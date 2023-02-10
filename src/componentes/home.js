@@ -1,7 +1,6 @@
 import { auth } from '../firebase';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-
 export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h2');
