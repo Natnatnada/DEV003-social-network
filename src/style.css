@@ -83,11 +83,12 @@ body {
 /* estilo de boton google*/
 .googleIcon{
     /* se agrega imagen desde carpeta como fondo*/
-    background-image: url("img/googleLog.png");
+    background-image: url("img/boton_goo.PNG");
     /* background position para que la imagen quede centrada, no desaparezca*/
     background-position:center;
     /* mismo formato que botones del home*/
-    width: 11rem;
+    background-size: contain;
+    width: 15rem;
     height: 3rem;
     border-radius: 10px;
     justify-content: center;
@@ -210,10 +211,9 @@ body {
     }
     /* icono de boton google */
     .googleIcon{
-        background-image: url("img/googleLog.png");
+        background-image: url("img/boton_goo.PNG");
         background-position:center;
-        background-size: cover;
-        width: 11rem;
+        width: 15rem;
         height: 3rem;
         border-radius: 10px;
         justify-content: center;
