@@ -80,6 +80,23 @@ body {
 .imgContainer {
     display: none   !important;
 }
+/* estilo de boton google*/
+.googleIcon{
+    /* se agrega imagen desde carpeta como fondo*/
+    background-image: url("img/googleLog.png");
+    /* background position para que la imagen quede centrada, no desaparezca*/
+    background-position:center;
+    /* mismo formato que botones del home*/
+    width: 11rem;
+    height: 3rem;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+    margin-left: 18%;
+    background-size: cover;
+
+}
 }
 @media (max-width: 1600px) and (min-width: 601px){
     * {
@@ -94,32 +111,33 @@ body {
     .deskContainer{
         display: flex;
         margin: auto;
-        position: relative;
+        position: absolute;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         
     }
     .homeContainer{
-        display: flex;
-       margin-left: 50px;
+       margin: 50px;
        padding: 50px;
        flex-direction: column;
+       display: flex;
 
     }
+
     .imgContainer{
-        display: flex;
         background-image: url("img/coding.png");
-        width: 50%;
-        height: 50%;
+        width: 40%;
+        height: 70%;
         background-size: cover;
-        position: absolute;
+        background-position:center;
+        position: relative;
         background-repeat: no-repeat;
         margin: auto;
-        padding: 50px;
-   
+        padding: 150px;
+
     }
-    
+
     .titulo {
         font-size: 4rem;
         font-family: 'Rasa', serif;
@@ -189,6 +207,21 @@ body {
     
     .hide {
         display: none;
+    }
+    /* icono de boton google */
+    .googleIcon{
+        background-image: url("img/googleLog.png");
+        background-position:center;
+        background-size: cover;
+        width: 11rem;
+        height: 3rem;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: 25px;
+        margin-left: 18%;
+        background-size: cover;
+        
     }
 
 }

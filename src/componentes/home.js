@@ -6,6 +6,8 @@ export const home = (onNavigate) => {
   const homeContainer = document.createElement('div');
   const imgContainer = document.createElement('div');
   const deskContainer = document.createElement('div');
+  //se crea div para insertar imagen del boton google
+ const googleimg = document.createElement('div');
   const title = document.createElement('h2');
   const subTitle = document.createElement('h2');
   const registerButton = document.createElement('button');
@@ -15,7 +17,9 @@ export const home = (onNavigate) => {
   // Aquí le dimos clases a los elementos
   registerButton.className = 'botones';
   logInButton.className = 'botones';
-  logInGoogle.className = 'botones';
+  logInGoogle.className = 'googleIcon';
+  //se asigna clase para dar estilo al div para el boton de google
+  googleimg.classList = 'googleIcon';
   logInGoogle.id = 'btnlogInGoogle';
   title.className = 'titulo';
   subTitle.className = 'subtitulo';
@@ -27,7 +31,7 @@ export const home = (onNavigate) => {
   logInButton.textContent = 'Inicia sesión';
   title.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
-  logInGoogle.textContent = 'Inicia sesión con Google';
+
 
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
@@ -40,8 +44,8 @@ export const home = (onNavigate) => {
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
-  homeContainer.append(logInButton, logInGoogle, registerButton);
-  deskContainer.append(homeContainer, imgContainer);
+  homeContainer.append(logInButton, registerButton, logInGoogle);
+  deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
   return homeDiv;
 };
