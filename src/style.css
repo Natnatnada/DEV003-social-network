@@ -227,3 +227,13 @@ body {
 }
 
 /*tabletas (768px), */
+
+/**********************************************Código del FEED***********************************************/
+.divPadre {
+    border: 1rem;
+    border-color: black;
+}
+#inputPost {
+    border: 1rem;
+    border-color: black;
+}

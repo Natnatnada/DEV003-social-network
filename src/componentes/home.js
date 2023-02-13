@@ -2,17 +2,20 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase';
 
 export const home = (onNavigate) => {
+  //creamos elementos
   const homeDiv = document.createElement('div');
   const homeContainer = document.createElement('div');
   const imgContainer = document.createElement('div');
   const deskContainer = document.createElement('div');
   //se crea div para insertar imagen del boton google
- const googleimg = document.createElement('div');
+  const googleimg = document.createElement('div');
   const title = document.createElement('h2');
   const subTitle = document.createElement('h2');
   const registerButton = document.createElement('button');
   const logInButton = document.createElement('button');
   const logInGoogle = document.createElement('button');
+  const inputEmail = document.createElement('input');
+  const inputPsw = document.createElement('input');
 
   // Aquí le dimos clases a los elementos
   registerButton.className = 'botones';
@@ -31,6 +34,11 @@ export const home = (onNavigate) => {
   logInButton.textContent = 'Inicia sesión';
   title.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
+  inputEmail.className = 'inputs';
+  inputEmail.placeholder = 'ingresa tu email aqui';
+  inputPsw.className = 'inputs';
+  inputPsw.placeholder = 'ingresa tu contraseña';
+  inputPsw.type = 'password';
 
 
   registerButton.addEventListener('click', () => {
@@ -38,13 +46,13 @@ export const home = (onNavigate) => {
   });
 
   logInButton.addEventListener('click', () => {
-    onNavigate('/logIn');
+    onNavigate('/feed');
   });
 
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
-  homeContainer.append(logInButton, registerButton, logInGoogle);
+  homeContainer.append(inputEmail, inputPsw, logInButton, registerButton, logInGoogle);
   deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
   return homeDiv;
