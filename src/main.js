@@ -1,18 +1,6 @@
-import { home } from './componentes/home.js';
-import { registro } from './componentes/registro.js';
-import { logIn } from './componentes/logIn.js';
-import { feed } from './componentes/feed.js';
+import { rootDiv, routes } from './lib/routers.js';
 
-const rootDiv = document.getElementById('root');
-
-const routes = {
-  '/': home(onNavigate),
-  '/logIn': logIn(onNavigate),
-  '/registro': registro(onNavigate),
-  '/feed': feed(onNavigate),
-};
-
-function onNavigate(pathname) {
+export function onNavigate(pathname) {
   window.history.pushState(
     {},
     pathname,
@@ -23,7 +11,7 @@ function onNavigate(pathname) {
   rootDiv.appendChild(routes[pathname]);
 }
 
-const component = routes[window.location.pathname];
+export const component = routes[window.location.pathname];
 
 window.onpopstate = () => {
   rootDiv.removeChild(rootDiv.firstChild);
