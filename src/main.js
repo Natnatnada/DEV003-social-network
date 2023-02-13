@@ -8,6 +8,7 @@ export function onNavigate(pathname) {
   );
 
   rootDiv.removeChild(rootDiv.firstChild);
+  //Aquí Marcia nos ayudó a resolver la dependencia cíclica del OnNavigate
   rootDiv.appendChild(routes[pathname](onNavigate));
 }
 
