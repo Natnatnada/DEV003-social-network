@@ -8,7 +8,7 @@ export function onNavigate(pathname) {
   );
 
   rootDiv.removeChild(rootDiv.firstChild);
-  rootDiv.appendChild(routes[pathname]);
+  rootDiv.appendChild(routes[pathname](onNavigate));
 }
 
 export const component = routes[window.location.pathname];
