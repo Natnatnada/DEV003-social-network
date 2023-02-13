@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase.js';
+import { auth } from '../lib/firebase.js';
 
 export const registro = (onNavigate) => {
   const homeDiv = document.createElement('div');
