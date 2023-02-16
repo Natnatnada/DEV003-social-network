@@ -1,4 +1,4 @@
-import { entrarConGoogle } from '../lib/funcionesFirebase';
+import { entrarConGoogle, signInUser } from '../lib/index';
 
 export const home = (onNavigate) => {
   // creamos elementos
@@ -42,16 +42,35 @@ export const home = (onNavigate) => {
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
   });
-
+/*
   logInButton.addEventListener('click', () => {
     onNavigate('/feed');
   });
-
+*/
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
   homeContainer.append(inputEmail, inputPsw, logInButton, registerButton, logInGoogle);
   deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
+//funcion para login con usuarios creados  signInWithEmailAndPassword -> signInUser
+  logInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInUser(inputEmail.value, inputPsw.value)
+      .then((userCredential) => {
+        console.log('iniciasesion')
+        // Signed in
+        const user = userCredential.user;
+        // pasa onNavigate como parametro llevando al feed si el usario se logea
+        onNavigate('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  });
+ 
   return homeDiv;
 };
+
+
