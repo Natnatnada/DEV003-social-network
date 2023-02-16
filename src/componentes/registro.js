@@ -4,7 +4,6 @@ import { auth } from '../lib/firebase.js';
 export const registro = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h2');
-  const buttonNewUser = document.createElement('button');
   const backButton = document.createElement('button');
   const createAcount = document.createElement('button');
   const inputEmail = document.createElement('input');
@@ -15,13 +14,11 @@ export const registro = (onNavigate) => {
   const formcontainer = document.createElement('div');
   const signUpForm = document.createElement('form');
   title.textContent = '<CiberFem>';
-  buttonNewUser.textContent = 'Entra con tu cuenta';
   backButton.textContent = 'Regresar';
   title.textContent = 'Únete a la comunidad CiberFem';
   createAcount.textContent = 'crea tu usuario';
   emailErr.textContent = 'El email ya está en uso';
   // Aquí ponemos clases a los botones
-  buttonNewUser.className = 'botones';
   createAcount.className = 'botones';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
@@ -38,15 +35,12 @@ export const registro = (onNavigate) => {
   inputPsw.type = 'password';
   createAcount.type = 'submit';
 
-  buttonNewUser.addEventListener('click', () => {
-    onNavigate('/logIn');
-  });
   backButton.addEventListener('click', () => {
     onNavigate('/');
   });
 
   signUpForm.append(inputEmail, emailErr, inputPsw, nameUser, generalErr, createAcount);
-  formcontainer.append(title, signUpForm, backButton, buttonNewUser);
+  formcontainer.append(title, signUpForm, backButton);
   homeDiv.append(formcontainer);
 
   signUpForm.addEventListener('submit', async (e) => {
