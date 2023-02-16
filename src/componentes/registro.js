@@ -37,8 +37,6 @@ export const registro = (onNavigate) => {
   nameUser.placeholder = 'Ingresa Nombre de usuaria';
   inputPsw.type = 'password';
   createAcount.type = 'submit';
-  console.log(signUpForm);
-  console.log(createAcount);
 
   buttonNewUser.addEventListener('click', () => {
     onNavigate('/logIn');
@@ -50,6 +48,7 @@ export const registro = (onNavigate) => {
   signUpForm.append(inputEmail, emailErr, inputPsw, nameUser, generalErr, createAcount);
   formcontainer.append(title, signUpForm, backButton, buttonNewUser);
   homeDiv.append(formcontainer);
+
   signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     generalErr.classList.add('hide');
@@ -66,6 +65,7 @@ export const registro = (onNavigate) => {
         const userData = await createUserWithEmailAndPassword(auth, email, Psw);
         console.log(userData);
         signUpForm.reset();
+        onNavigate('/feed');
       } catch (error) {
         let textMessage = 'Ups, ocurrió un error';
         if (error.code === 'auth/email-already-in-use') {
