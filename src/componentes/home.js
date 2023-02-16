@@ -61,7 +61,7 @@ export const home = (onNavigate) => {
         console.log('iniciasesion')
         // Signed in
         const user = userCredential.user;
-        // pasa onNavigate como parametro llevando al feed si el usario se logea
+        // pasa onNavigate como parametro llevando al feed si el usuario se logea
         onNavigate('/feed');
       })
       .catch((error) => {
