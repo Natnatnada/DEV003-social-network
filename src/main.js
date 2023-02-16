@@ -1,6 +1,18 @@
-import { rootDiv, routes } from './lib/routers.js';
+import { home } from './componentes/home.js';
+import { registro } from './componentes/registro.js';
+import { logIn } from './componentes/logIn.js';
+import { feed } from './componentes/feed.js';
 
-export function onNavigate(pathname) {
+const rootDiv = document.getElementById('root');
+
+const routes = {
+  '/': home(onNavigate),
+  '/logIn': logIn(onNavigate),
+  '/registro': registro(onNavigate),
+  '/feed': feed(onNavigate),
+};
+
+function onNavigate(pathname) {
   window.history.pushState(
     {},
     pathname,
@@ -8,11 +20,10 @@ export function onNavigate(pathname) {
   );
 
   rootDiv.removeChild(rootDiv.firstChild);
-  //Aquí Marcia nos ayudó a resolver la dependencia cíclica del OnNavigate
-  rootDiv.appendChild(routes[pathname](onNavigate));
+  rootDiv.appendChild(routes[pathname]);
 }
 
-export const component = routes[window.location.pathname];
+const component = routes[window.location.pathname];
 
 window.onpopstate = () => {
   rootDiv.removeChild(rootDiv.firstChild);

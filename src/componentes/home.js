@@ -1,12 +1,12 @@
-import { entrarConGoogle } from "../lib/funcionesFirebase";
+import { entrarConGoogle, signInUser } from '../lib/index';
 
 export const home = (onNavigate) => {
-  //creamos elementos
+  // creamos elementos
   const homeDiv = document.createElement('div');
   const homeContainer = document.createElement('div');
   const imgContainer = document.createElement('div');
   const deskContainer = document.createElement('div');
-  //se crea div para insertar imagen del boton google
+  // se crea div para insertar imagen del boton google
   const googleimg = document.createElement('div');
   const title = document.createElement('h2');
   const subTitle = document.createElement('h2');
@@ -20,7 +20,7 @@ export const home = (onNavigate) => {
   registerButton.className = 'botones';
   logInButton.className = 'botones';
   logInGoogle.className = 'googleIcon';
-  //se asigna clase para dar estilo al div para el boton de google
+  // se asigna clase para dar estilo al div para el boton de google
   googleimg.classList = 'googleIcon';
   logInGoogle.id = 'btnlogInGoogle';
   title.className = 'titulo';
@@ -39,20 +39,38 @@ export const home = (onNavigate) => {
   inputPsw.placeholder = 'ingresa tu contraseña';
   inputPsw.type = 'password';
 
-
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
   });
-
+/*
   logInButton.addEventListener('click', () => {
     onNavigate('/feed');
   });
-
+*/
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
   homeContainer.append(inputEmail, inputPsw, logInButton, registerButton, logInGoogle);
   deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
+//funcion para login con usuarios creados  signInWithEmailAndPassword -> signInUser
+  logInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInUser(inputEmail.value, inputPsw.value)
+      .then((userCredential) => {
+        console.log('iniciasesion')
+        // Signed in
+        const user = userCredential.user;
+        // pasa onNavigate como parametro llevando al feed si el usario se logea
+        onNavigate('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  });
+ 
   return homeDiv;
 };
+
+

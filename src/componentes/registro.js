@@ -8,33 +8,35 @@ export const registro = (onNavigate) => {
   const backButton = document.createElement('button');
   const createAcount = document.createElement('button');
   const inputEmail = document.createElement('input');
+  const emailErr = document.createElement('div');
   const inputPsw = document.createElement('input');
-
   const nameUser = document.createElement('input');
+  const generalErr = document.createElement('div');
   const formcontainer = document.createElement('div');
   const signUpForm = document.createElement('form');
   title.textContent = '<CiberFem>';
-  buttonNewUser.textContent = 'ENTRA CON TU USARIO';
+  buttonNewUser.textContent = 'Entra con tu cuenta';
   backButton.textContent = 'Regresar';
   title.textContent = 'Únete a la comunidad CiberFem';
-  createAcount.textContent = 'crea tu usaurio';
+  createAcount.textContent = 'crea tu usuario';
+  emailErr.textContent = 'El email ya está en uso';
   // Aquí ponemos clases a los botones
   buttonNewUser.className = 'botones';
   createAcount.className = 'botones';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
+  emailErr.classList.add('errors', 'hide');
   inputPsw.className = 'inputs';
   nameUser.className = 'inputs';
+  generalErr.classList.add('errors', 'hide');
   title.className = 'titulo';
   formcontainer.className = 'formbox';
   signUpForm.className = 'signUpForm';
-  inputEmail.placeholder = 'ingresa tu email aqui';
-  inputPsw.placeholder = 'ingresa tu contraseña';
-  nameUser.placeholder = 'Ingresa Nombre de usuario';
+  inputEmail.placeholder = 'Ingresa tu email aqui';
+  inputPsw.placeholder = 'Ingresa tu contraseña';
+  nameUser.placeholder = 'Ingresa Nombre de usuaria';
   inputPsw.type = 'password';
   createAcount.type = 'submit';
-  console.log(signUpForm);
-  console.log(createAcount);
 
   buttonNewUser.addEventListener('click', () => {
     onNavigate('/logIn');
@@ -43,29 +45,38 @@ export const registro = (onNavigate) => {
     onNavigate('/');
   });
 
-  signUpForm.append(inputEmail, inputPsw, nameUser, createAcount);
+  signUpForm.append(inputEmail, emailErr, inputPsw, nameUser, generalErr, createAcount);
   formcontainer.append(title, signUpForm, backButton, buttonNewUser);
   homeDiv.append(formcontainer);
+
   signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const email = inputEmail.value;
-    const Psw = inputPsw.value;
-    const User = nameUser.value;
-    console.log(email, Psw, User);
-
-    try {
-      const userData = await createUserWithEmailAndPassword(auth, email, Psw);
-      console.log(userData);
-      signUpForm.reset();
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        showMessage('Email ya en uso', 'error');
-      } else if (error.code === 'auth/invalid-email') {
-        showMessage('Email invalido ', 'error');
-      } else if (error.code === 'auth/weak-password') {
-        showMessage('contraseña debil ', 'error');
-      } else if (error.code) {
-        showMessage('Ups', 'error');
+    generalErr.classList.add('hide');
+    emailErr.classList.add('hide');
+    if (inputEmail.value === '' || inputEmail.value === null || inputEmail.value === undefined) {
+      emailErr.textContent = 'Por favor introduce un correo válido';
+      emailErr.classList.remove('hide');
+    } else {
+      try {
+        const email = inputEmail.value;
+        const Psw = inputPsw.value;
+        const User = nameUser.value;
+        console.log(email, Psw, User);
+        const userData = await createUserWithEmailAndPassword(auth, email, Psw);
+        console.log(userData);
+        signUpForm.reset();
+        onNavigate('/feed');
+      } catch (error) {
+        let textMessage = 'Ups, ocurrió un error';
+        if (error.code === 'auth/email-already-in-use') {
+          textMessage = 'Email ya en uso';
+        } else if (error.code === 'auth/invalid-email') {
+          textMessage = 'Email inválido';
+        } else if (error.code === 'auth/weak-password') {
+          textMessage = 'Contraseña débil';
+        }
+        generalErr.textContent = textMessage;
+        generalErr.classList.remove('hide');
       }
     }
   });
