@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { home } from './componentes/home.js';
 import { registro } from './componentes/registro.js';
 import { feed } from './componentes/feed.js';
