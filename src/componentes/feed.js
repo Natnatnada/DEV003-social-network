@@ -12,13 +12,13 @@ export const feed = (onNavigate) => {
   inputPost.placeholder = 'Escribe aquí lo que piensas';
   botonGuardar.textContent = 'Guardar';
 
-  // ============Damos clases a los elementos==============//
+  // ============Damos clases a los elementos==============
   divPadre.className = 'divPadre';
 
-  //= ====================Damos ID a los elementos=======================//
+  //= ==============Damos ID a los elementos===============
   inputPost.id = 'guardarPost';
 
-  //= ===================Mostramos los elementos=======================//
+  //= ===========Mostramos los elementos=================
   div.append(title, inputPost, botonGuardar, divPadre);
 
   return div;
