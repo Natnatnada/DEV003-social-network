@@ -11,7 +11,7 @@ export const registro = (onNavigate) => {
   const inputPsw = document.createElement('input');
   const nameUser = document.createElement('input');
   const generalErr = document.createElement('div');
-  const formcontainer = document.createElement('div');
+  const formContainer = document.createElement('div');
   const signUpForm = document.createElement('form');
   title.textContent = '<CiberFem>';
   backButton.textContent = 'Regresar';
@@ -20,14 +20,17 @@ export const registro = (onNavigate) => {
   emailErr.textContent = 'El email ya está en uso';
   // Aquí ponemos clases a los botones
   createAcount.className = 'botones';
+  createAcount.id = 'createAccount';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
+  inputEmail.id = 'inputEmail';
   emailErr.classList.add('errors', 'hide');
   inputPsw.className = 'inputs';
+  inputPsw.id = 'inputPsw';
   nameUser.className = 'inputs';
   generalErr.classList.add('errors', 'hide');
   title.className = 'titulo';
-  formcontainer.className = 'formbox';
+  formContainer.className = 'formbox';
   signUpForm.className = 'signUpForm';
   inputEmail.placeholder = 'Ingresa tu email aqui';
   inputPsw.placeholder = 'Ingresa tu contraseña';
@@ -40,8 +43,8 @@ export const registro = (onNavigate) => {
   });
 
   signUpForm.append(inputEmail, emailErr, inputPsw, nameUser, generalErr, createAcount);
-  formcontainer.append(title, signUpForm, backButton);
-  homeDiv.append(formcontainer);
+  formContainer.append(title, signUpForm, backButton);
+  homeDiv.append(formContainer);
 
   signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
