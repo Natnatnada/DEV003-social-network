@@ -14,12 +14,16 @@ export const home = (onNavigate) => {
   const logInButton = document.createElement('button');
   const logInGoogle = document.createElement('button');
   const inputEmail = document.createElement('input');
+  const logInEmailErr = document.createElement('div');
   const inputPsw = document.createElement('input');
+  const logInGeneralErr = document.createElement('div');
 
   // Aquí le dimos clases a los elementos
   registerButton.className = 'botones';
   logInButton.className = 'botones';
   logInGoogle.className = 'googleIcon';
+  logInEmailErr.classList.add('errors', 'hide');
+  logInGeneralErr.classList.add('errors', 'hide');
   // se asigna clase para dar estilo al div para el boton de google
   googleimg.classList = 'googleIcon';
   logInGoogle.id = 'btnlogInGoogle';
@@ -38,11 +42,12 @@ export const home = (onNavigate) => {
   inputPsw.className = 'inputs';
   inputPsw.placeholder = 'ingresa tu contraseña';
   inputPsw.type = 'password';
+  logInEmailErr.textContent = 'El email ya está en uso';
 
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
   });
-/*
+  /*
   logInButton.addEventListener('click', () => {
     onNavigate('/feed');
   });
@@ -50,27 +55,62 @@ export const home = (onNavigate) => {
   logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
   });
-  homeContainer.append(inputEmail, inputPsw, logInButton, registerButton, logInGoogle);
+  homeContainer.append(
+    inputEmail,
+    inputPsw,
+    logInButton,
+    registerButton,
+    logInGoogle,
+    logInEmailErr,
+    logInGeneralErr,
+  ); // revisar porqué marca error
   deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
-//funcion para login con usuarios creados  signInWithEmailAndPassword -> signInUser
+  // funcion para login con usuarios creados  signInWithEmailAndPassword -> signInUser
   logInButton.addEventListener('click', (e) => {
     e.preventDefault();
     signInUser(inputEmail.value, inputPsw.value)
       .then((userCredential) => {
-        console.log('iniciasesion')
         // Signed in
         const user = userCredential.user;
+        console.log(user);
         // pasa onNavigate como parametro llevando al feed si el usuario se logea
         onNavigate('/feed');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+
+        let logInTextMsg = 'Ups, ocurrió un error';
+        if (error.code === 'auth/email-already-in-use') {
+          logInTextMsg = 'Email ya en uso';
+        } else if (error.code === 'auth/invalid-email') {
+          logInTextMsg = 'Email inválido';
+        }
+        logInGeneralErr.textContent = logInTextMsg;
+        logInGeneralErr.classList.remove('hide');
       });
   });
- 
+
+  // pasando la función entrarConGoogle del index.js a home.js
+  logInGoogle.addEventListener('click', () => {
+    entrarConGoogle()
+      .then((result) => {
+        // The signed-in user info.
+        // const user = result.user;
+        console.log(result);
+        onNavigate('/feed');
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+      }).catch((error) => {
+      // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        console.log(errorCode, errorMessage, email);
+      });
+  });
+
   return homeDiv;
 };
-
-
