@@ -47,14 +47,9 @@ export const home = (onNavigate) => {
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
   });
-  /*
-  logInButton.addEventListener('click', () => {
-    onNavigate('/feed');
-  });
-*/
-  logInGoogle.addEventListener('click', () => {
+  /* logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
-  });
+  }); pendiente de pregunta porqué no funciona */
   homeContainer.append(
     inputEmail,
     inputPsw,
