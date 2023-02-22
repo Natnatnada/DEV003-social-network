@@ -47,14 +47,11 @@ export const home = (onNavigate) => {
   registerButton.addEventListener('click', () => {
     onNavigate('/registro');
   });
-  /*
-  logInButton.addEventListener('click', () => {
-    onNavigate('/feed');
-  });
-*/
-  logInGoogle.addEventListener('click', () => {
+
+  /*logInGoogle.addEventListener('click', () => {
     entrarConGoogle(onNavigate);
-  });
+  });*/
+
   homeContainer.append(
     inputEmail,
     inputPsw,
