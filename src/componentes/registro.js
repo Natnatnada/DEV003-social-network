@@ -8,6 +8,7 @@ export const registro = (onNavigate) => {
   const createAcount = document.createElement('button');
   const inputEmail = document.createElement('input');
   const emailErr = document.createElement('div');
+  const emailErrT = document.createElement('div');
   const inputPsw = document.createElement('input');
   const nameUser = document.createElement('input');
   const generalErr = document.createElement('div');
@@ -18,6 +19,7 @@ export const registro = (onNavigate) => {
   title.textContent = 'Únete a la comunidad CiberFem';
   createAcount.textContent = 'crea tu usuario';
   emailErr.textContent = 'El email ya está en uso';
+  emailErrT.textContent = 'Autenticación inválida';
   // Aquí ponemos clases a los botones
   createAcount.className = 'botones';
   createAcount.id = 'createAccount';
@@ -25,6 +27,8 @@ export const registro = (onNavigate) => {
   inputEmail.className = 'inputs';
   inputEmail.id = 'inputEmail';
   emailErr.classList.add('errors', 'hide');
+  emailErr.id = 'emailErr';
+  emailErrT.id = 'emailErrT';
   inputPsw.className = 'inputs';
   inputPsw.id = 'inputPsw';
   nameUser.className = 'inputs';
