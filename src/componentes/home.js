@@ -48,10 +48,6 @@ export const home = (onNavigate) => {
     onNavigate('/registro');
   });
 
-  /*logInGoogle.addEventListener('click', () => {
-    entrarConGoogle(onNavigate);
-  });*/
-
   homeContainer.append(
     inputEmail,
     inputPsw,

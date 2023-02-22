@@ -2,7 +2,7 @@ import {
   signInWithPopup, GoogleAuthProvider,
   signInWithEmailAndPassword,
   // onAuthStateChanged,
-  signOut,
+  signOut, createUserWithEmailAndPassword,
 } from 'firebase/auth';
 
 // signInWithEmailAndPassword, onAuthStateChanged ,signOut
@@ -12,6 +12,10 @@ const provider = new GoogleAuthProvider();
 export function entrarConGoogle() {
   // Nos falta hacer el llamado de la función que es logInGoogle
   return signInWithPopup(auth, provider);
+}
+// Funcion para crear un usuario
+export function signUp(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
 }
 // funcion para iniciar sesion con usuario ya creado
 export function signInUser(email, password) {
