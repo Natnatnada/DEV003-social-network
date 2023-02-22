@@ -53,11 +53,13 @@ export const home = (onNavigate) => {
   homeContainer.append(
     inputEmail,
     inputPsw,
+    // se agregan cambian los errores para que aparezcan bajo los inputs
+    logInEmailErr,
+    logInGeneralErr,
     logInButton,
     registerButton,
     logInGoogle,
-    logInEmailErr,
-    logInGeneralErr,
+
   ); // revisar porqué marca error
   deskContainer.append(imgContainer, homeContainer);
   homeDiv.append(title, subTitle, deskContainer);
@@ -74,12 +76,11 @@ export const home = (onNavigate) => {
       })
       .catch((error) => {
         // const errorCode = error.code;
-
         let logInTextMsg = 'Ups, ocurrió un error';
-        if (error.code === 'auth/email-already-in-use') {
-          logInTextMsg = 'Email ya en uso';
+        if (error.code === 'auth/wrong-password') {
+          logInTextMsg = 'Contraseña equivocada';
         } else if (error.code === 'auth/invalid-email') {
-          logInTextMsg = 'Email inválido';
+          logInTextMsg = 'Ingresa el correo de tu cuenta';
         }
         logInGeneralErr.textContent = logInTextMsg;
         logInGeneralErr.classList.remove('hide');
@@ -94,10 +95,10 @@ export const home = (onNavigate) => {
         // const user = result.user;
         console.log(result);
         onNavigate('/feed');
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
       }).catch((error) => {
-      // Handle Errors here.
+        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.

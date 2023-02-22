@@ -28,7 +28,10 @@ export const feed = (onNavigate) => {
       console.log('cerrando');
       onNavigate('/');
     }).catch((error) => {
-      // An error happened
+      if (error.code) {
+        console.log(error.code);
+      }
+      // An error happened.
     });
   });
   return div;
