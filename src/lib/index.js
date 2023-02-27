@@ -1,11 +1,17 @@
 import {
   signInWithPopup, GoogleAuthProvider,
   signInWithEmailAndPassword,
-  // onAuthStateChanged,
-  signOut, createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
-
-// signInWithEmailAndPassword, onAuthStateChanged ,signOut
+// se importan las funciones desde firestore base de datos
+/*
+import {
+  collection,
+  addDoc,
+} from 'firebase/firestore';
+*/
 import { auth } from './firebase';
 
 const provider = new GoogleAuthProvider();
@@ -25,4 +31,7 @@ export function signInUser(email, password) {
 export function signOff() {
   return signOut(auth);
 }
-// onAuthStateChanged
+// funcion para ver si la usuaria esta logeada
+export function getUser(user) {
+  return onAuthStateChanged(auth, user);
+}
