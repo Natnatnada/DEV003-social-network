@@ -6,6 +6,7 @@ export const home = (onNavigate) => {
   const homeContainer = document.createElement('div');
   const imgContainer = document.createElement('div');
   const deskContainer = document.createElement('div');
+  const container = document.createElement('div');
   // se crea div para insertar imagen del boton google
   const googleimg = document.createElement('div');
   const title = document.createElement('h2');
@@ -19,6 +20,7 @@ export const home = (onNavigate) => {
   const logInGeneralErr = document.createElement('div');
 
   // Aquí le dimos clases a los elementos
+  container.className = 'logInContainer';
   registerButton.className = 'botones';
   logInButton.className = 'botones';
   logInGoogle.className = 'googleIcon';
@@ -38,9 +40,9 @@ export const home = (onNavigate) => {
   title.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
   inputEmail.className = 'inputs';
-  inputEmail.placeholder = 'ingresa tu email aqui';
+  inputEmail.placeholder = 'Ingresa tu email aqui';
   inputPsw.className = 'inputs';
-  inputPsw.placeholder = 'ingresa tu contraseña';
+  inputPsw.placeholder = 'Ingresa tu contraseña';
   inputPsw.type = 'password';
   logInEmailErr.textContent = 'El email ya está en uso';
 
