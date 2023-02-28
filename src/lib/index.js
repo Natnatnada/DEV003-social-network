@@ -6,13 +6,13 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 // se importan las funciones desde firestore base de datos
-/*
+
 import {
   collection,
   addDoc,
 } from 'firebase/firestore';
-*/
-import { auth } from './firebase';
+
+import { auth, db } from './firebase';
 
 const provider = new GoogleAuthProvider();
 export function entrarConGoogle() {
@@ -35,3 +35,5 @@ export function signOff() {
 export function getUser(user) {
   return onAuthStateChanged(auth, user);
 }
+// funcion para guardar tareas/post en firestore
+export const saveTask = (title, description) => addDoc(collection(db, 'task'), { title, description });
