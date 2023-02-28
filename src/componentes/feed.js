@@ -1,4 +1,4 @@
-import { signOff, saveTask } from '../lib';
+import { signOff, saveTask, getTask } from '../lib';
 // eslint-disable-next-line no-unused-vars
 export const feed = (onNavigate) => {
 // ========Creamos los elementos de nuestro feed===========
@@ -46,11 +46,15 @@ export const feed = (onNavigate) => {
     e.preventDefault();
     // console.log('submitted');
     const title = postTitle.value;
-    //console.log(postTitle.value);
+    // console.log(postTitle.value);
     const description = postText.value;
     //  console.log(postText.value);
     saveTask(title, description);
     // taskForm.reset();
+  });
+
+  getTask().then(() => {
+    console.log('hola muro');
   });
 
   btnLogOut.addEventListener('click', () => {

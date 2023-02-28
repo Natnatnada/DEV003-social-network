@@ -10,6 +10,10 @@ import {
 import {
   collection,
   addDoc,
+  getDoc,
+  query,
+  where,
+  getDocs,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -37,3 +41,20 @@ export function getUser(user) {
 }
 // funcion para guardar tareas/post en firestore
 export const saveTask = (title, description) => addDoc(collection(db, 'task'), { title, description });
+
+export const getTask = async() => {
+  /*const getPost = collection(db, 'task');
+  const docSnap = await getDoc(getPost);
+  console.log(docSnap);
+  docSnap.forEach((doc) => {
+  console.log(doc.data());
+  });*/
+  const q = query(collection(db, "task"));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
+
+};
