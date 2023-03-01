@@ -54,7 +54,7 @@ export const feed = (onNavigate) => {
   });
 
   getTask().then(() => {
-    console.log('hola muro');
+    console.log();
   });
 
   btnLogOut.addEventListener('click', () => {
