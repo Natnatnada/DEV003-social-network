@@ -10,10 +10,10 @@ import {
 import {
   collection,
   addDoc,
-  getDoc,
+  // getDoc,
   query,
-  where,
   getDocs,
+  onSnapshot,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -57,3 +57,4 @@ export const getTask = async () => {
     console.log(doc.id, '=>', doc.data());
   });
 };
+export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);

@@ -1,4 +1,6 @@
-import { signOff, saveTask, getTask } from '../lib';
+import {
+  signOff, saveTask, getTask, obtenerPost,
+} from '../lib';
 // eslint-disable-next-line no-unused-vars
 export const feed = (onNavigate) => {
 // ========Creamos los elementos de nuestro feed===========
@@ -8,6 +10,8 @@ export const feed = (onNavigate) => {
   const subTitle = document.createElement('h2');
   const taskForm = document.createElement('form');
   const postTitle = document.createElement('input');
+  // se crea div para innetHtml
+  const feedContainer = document.createElement('div');
   // se crea const para texto del post
   const headerPost = document.createElement('h3');
   const postText = document.createElement('textarea');
@@ -23,6 +27,8 @@ export const feed = (onNavigate) => {
   btnLogOut.className = 'botones';
   titleCiber.className = 'titulo';
   subTitle.className = 'subtitulo';
+  // clase container post
+  feedContainer.className = 'muroContainer';
   titleCiber.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
   // ============Damos clases a los elementos==============
@@ -35,10 +41,12 @@ export const feed = (onNavigate) => {
   // post text id
   postText.id = 'postText';
   botonGuardar.id = 'botonGuardar';
+  // id del div para pintar post en el muro
+  feedContainer.id = 'feedContainer';
 
   // se agrupan los elementos segun el form
   taskForm.append(postTitle, postText, botonGuardar);
-  div.append(titleCiber, subTitle, headerPost, taskForm, divPadre, btnLogOut);
+  div.append(titleCiber, subTitle, headerPost, taskForm, feedContainer, divPadre, btnLogOut);
 
   // taskForm = document.getElementById('taskForm');
 
@@ -55,6 +63,20 @@ export const feed = (onNavigate) => {
 
   getTask().then(() => {
     console.log('hola muro');
+  });
+
+  obtenerPost((querySnapshot) => {
+    let html = '';
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      html += `
+        <p>${post.title}</p>
+        <p class='description-text'>${post.description}</p>
+        `;
+      console.log(post);
+    });
+    feedContainer.innerHTML = html;
+    console.log(feedContainer);
   });
 
   btnLogOut.addEventListener('click', () => {
