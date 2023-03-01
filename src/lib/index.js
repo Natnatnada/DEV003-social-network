@@ -1,12 +1,22 @@
 import {
   signInWithPopup, GoogleAuthProvider,
   signInWithEmailAndPassword,
-  // onAuthStateChanged,
-  signOut, createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
+// se importan las funciones desde firestore base de datos
 
-// signInWithEmailAndPassword, onAuthStateChanged ,signOut
-import { auth } from './firebase';
+import {
+  collection,
+  addDoc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore';
+
+import { auth, db } from './firebase';
 
 const provider = new GoogleAuthProvider();
 export function entrarConGoogle() {
@@ -25,4 +35,25 @@ export function signInUser(email, password) {
 export function signOff() {
   return signOut(auth);
 }
-// onAuthStateChanged
+// funcion para ver si la usuaria esta logeada
+export function getUser(user) {
+  return onAuthStateChanged(auth, user);
+}
+// funcion para guardar tareas/post en firestore
+export const saveTask = (title, description) => addDoc(collection(db, 'task'), { title, description });
+
+export const getTask = async () => {
+  /* const getPost = collection(db, 'task');
+  const docSnap = await getDoc(getPost);
+  console.log(docSnap);
+  docSnap.forEach((doc) => {
+  console.log(doc.data());
+  }); */
+  const q = query(collection(db, 'task'));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, '=>', doc.data());
+  });
+};
