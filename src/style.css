@@ -237,6 +237,12 @@ body {
     }
 
 }
+.description-text{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    justify-content: center;
+
+}
 
 /*tabletas (768px), */
 
