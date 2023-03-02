@@ -10,10 +10,10 @@ import {
 import {
   collection,
   addDoc,
-  getDoc,
+  // getDoc,
   query,
-  where,
   getDocs,
+  onSnapshot,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -48,12 +48,16 @@ export const getTask = async () => {
   console.log(docSnap);
   docSnap.forEach((doc) => {
   console.log(doc.data());
-  }); */
-  const q = query(collection(db, 'task'));
+  }); */ 
 
+ // guardas en la constante q lo que obtengas de la búsqueda de la colección que se llame task dentro de la base de datos
+  const q = query(collection(db, 'task'));
+//me va a regresar la colección
   const querySnapshot = await getDocs(q);
+  //crea un array con cada uno de los post
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, '=>', doc.data());
   });
 };
+export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);
