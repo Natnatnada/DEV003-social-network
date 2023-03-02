@@ -70,8 +70,10 @@ export const feed = (onNavigate) => {
     querySnapshot.forEach((doc) => {
       const post = doc.data();
       html += `
+        <div class= 'postIndividual'>
         <p>${post.title}</p>
         <p class='description-text'>${post.description}</p>
+        </div>
         `;
       console.log(post);
     });
