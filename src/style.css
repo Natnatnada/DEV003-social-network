@@ -107,6 +107,58 @@ body {
     align-self: center;
     margin: 0rem 2rem 1rem;
 }
+     /* style del feed */    
+     /* #feedContainer {
+        display: flex;
+        justify-content: center;
+        align-items: column;
+        flex-direction: column;
+        margin: 0.5rem 0.1rem 0.5rem;
+    } */
+
+    .postIndividual{
+        background-color: white;
+        text-align: center;
+    }
+
+    #tituloMuro {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        margin: 0.2rem;
+    }
+    
+    #postTitle {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        text-align: center;
+        margin: 1rem;
+    }
+
+    #taskForm {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        margin: 1rem;
+    }
+    #postText {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        text-align: center;
+        margin: 0.2rem;
+    }
+    #botonGuardar {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin: 0.2rem;
+    }
+
 }
 @media (max-width: 1600px) and (min-width: 601px){
     * {
@@ -234,6 +286,64 @@ body {
         margin-left: 18%;
         background-size: cover;
         
+    }
+
+    /* style del feed */    
+    /* #feedContainer {
+        display: flex;
+        justify-content: center;
+        align-items: column;
+        flex-direction: column;
+        margin: 0.5rem 0.1rem 0.5rem;
+    } */
+    
+    .postIndividual{
+        background-color: white;
+        text-align: center;
+        justify-content: space-between;
+        width: 25rem;
+        height: 6rem;
+        margin: 2rem auto 2rem;
+        border-radius: 10%;
+    }
+
+    #tituloMuro {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        margin: 0.2rem;
+    }
+    
+    #postTitle {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        text-align: center;
+        color: black;
+        margin: 1rem;
+    }
+
+    #taskForm {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        margin: 1rem;
+    }
+    #postText {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        flex-direction: column;
+        text-align: center;
+        margin: 1rem;
+    }
+    #botonGuardar {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin: 0.2rem;
     }
 
 }
