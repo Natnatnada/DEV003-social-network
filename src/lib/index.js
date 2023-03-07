@@ -40,7 +40,7 @@ export function getUser(user) {
   return onAuthStateChanged(auth, user);
 }
 // funcion para guardar tareas/post en firestore
-export const saveTask = (title, description) => addDoc(collection(db, 'task'), { title, description });
+export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
 export const getTask = async () => {
   /* const getPost = collection(db, 'task');

@@ -1,7 +1,11 @@
+/* eslint-disable indent */
 import {
-  signOff, saveTask, getTask, obtenerPost,
+  signOff, saveTask, getTask, obtenerPost, getUser,
 } from '../lib';
+import { auth } from '../lib/firebase';
 // eslint-disable-next-line no-unused-vars
+// const usuario = auth.userInfo;
+
 export const feed = (onNavigate) => {
 // ========Creamos los elementos de nuestro feed===========
   const div = document.createElement('div');
@@ -57,7 +61,7 @@ export const feed = (onNavigate) => {
     // console.log(postTitle.value);
     const description = postText.value;
     //  console.log(postText.value);
-    saveTask(title, description);
+    saveTask(title, description, usuario);
     // taskForm.reset();
   });
 
@@ -66,18 +70,69 @@ export const feed = (onNavigate) => {
   });
 
   obtenerPost((querySnapshot) => {
-    let html = '';
+    // let html = '';
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      html += `
+      /* html += `
         <div class= 'postIndividual'>
-        <p>${post.title}</p>
-        <p class='description-text'>${post.description}</p>
+          <div class='postHeader'>
+            <img src='img/user-circle-regular-24.png'>
+            <h5>Nombre de usuario</h5>
+          </div>
+          <p class='postTitle'>${post.title}</p>
+          <p class='description-text'>${post.description}</p>
+          <div class='postFooter'>
+            <button class='likeBtn'>
+              <img src='img/heart-regular-24.png'>
+              <img src='img/heart-solid-24.png'>
+            </button>
+          </div>
         </div>
-        `;
+        `; */
+// En lugar de escribirlo en HTML lo escribimos como elementos para manipularlos
+      const postIndividual = document.createElement('div');
+      postIndividual.classList.add('postIndividual');
+
+      const postHeader = document.createElement('div');
+      // agregando una clase al elemento
+      postHeader.classList.add('postHeader');
+      // nuevo HTML que estamos creando += agrega la info que va a leer como HTML
+      postHeader.innerHTML += "<img src='img/user-circle-regular-24.png'><h5>Nombre de usuario</h5>";
+
+      const postTitle2 = document.createElement('p');
+      postTitle2.classList.add('postTitle');
+      postTitle2.append(`${post.title}`);
+
+      const postDescription = document.createElement('p');
+      postDescription.classList.add('description-text');
+      postDescription.append(`${post.description}`);
+
+      const postFooter = document.createElement('div');
+      postFooter.classList.add('postFooter');
+
+      const likeBtn = document.createElement('button');
+      likeBtn.classList.add('likeBtn');
+      likeBtn.innerHTML += "<img src='img/heart-regular-24.png'><img src='img/heart-solid-24.png'>";
+
+      postFooter.append(likeBtn);
+      postIndividual.append(postHeader, postTitle2, postDescription, postFooter);
+      feedContainer.append(postIndividual);
+// detectamos si el boton está prendido o está apagado
+      likeBtn.addEventListener('click', (event) => {
+        // el objeto al que le damos click
+        const boton = event.target.parentElement;
+        // contains es un booleano
+        if (boton.classList.contains('active')) {
+          // si sí contiene active lo quitamos
+          boton.classList.remove('active');
+          // si no contiene active lo agregamos
+        } else {
+          boton.classList.add('active');
+        }
+      });
       console.log(post);
     });
-    feedContainer.innerHTML = html;
+    // feedContainer.innerHTML = html;
     console.log(feedContainer);
   });
 
