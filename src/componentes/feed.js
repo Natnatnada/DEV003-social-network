@@ -1,5 +1,7 @@
 import {
   signOff, saveTask, getTask, obtenerPost,
+  // llamar funcion delete
+  deletePost,
 } from '../lib';
 // eslint-disable-next-line no-unused-vars
 export const feed = (onNavigate) => {
@@ -58,7 +60,7 @@ export const feed = (onNavigate) => {
     const description = postText.value;
     //  console.log(postText.value);
     saveTask(title, description);
-    // taskForm.reset();
+    taskForm.reset();
   });
 
   getTask().then(() => {
@@ -73,12 +75,24 @@ export const feed = (onNavigate) => {
         <div class= 'postIndividual'>
         <p>${post.title}</p>
         <p class='description-text'>${post.description}</p>
+        <div class= 'btnpost'>
+        <button class='deletebtn' data-id='${doc.id}'>Eliminar</button>
+        </div>
         </div>
         `;
-      console.log(post);
     });
     feedContainer.innerHTML = html;
-    console.log(feedContainer);
+    //  funcion para buttonsdelete
+    const buttonsdelete = feedContainer.querySelectorAll('.deletebtn');
+    // console.log(buttonsdelete);
+    buttonsdelete.forEach((button) => {
+      // event es un objeto por lo que se extrae el target
+      button.addEventListener('click', ({ target: { dataset } }) => {
+        // console.log(event.target.dataset.id);
+        // console.log(dataset.id);
+        deletePost(dataset.id);
+      });
+    });
   });
 
   btnLogOut.addEventListener('click', () => {
