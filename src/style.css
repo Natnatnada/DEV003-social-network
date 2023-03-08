@@ -117,8 +117,39 @@ body {
     } */
 
     .postIndividual{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         background-color: white;
-        text-align: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .postHeader{
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .postTitle{
+        font-weight: bold;
+    }
+
+    .likeBtn{
+        background: none;
+        border: none;
+        /*el color negro lo vuelve rosa*/
+        filter: invert(92%) sepia(4%) saturate(2778%) hue-rotate(285deg) brightness(94%) contrast(85%);
+    }
+    /*nthchild es el n hijo de cualquier elemento*/
+    .likeBtn:not(.active) img:nth-child(2){ 
+        display:none;
+
+    }
+    .likeBtn.active img:nth-child(1){
+        display: none;
     }
 
     #tituloMuro {
@@ -349,7 +380,7 @@ body {
 }
 .description-text{
     font-family: Arial, Helvetica, sans-serif;
-    color: red;
+    color: darkslateblue;
     justify-content: center;
 
 }
