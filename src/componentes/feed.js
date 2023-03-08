@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import {
-  signOff, saveTask, getTask, obtenerPost, getUser,
+  signOff, saveTask, getTask, obtenerPost, getUser
 } from '../lib';
 import { auth } from '../lib/firebase';
 // eslint-disable-next-line no-unused-vars
@@ -61,8 +61,8 @@ export const feed = (onNavigate) => {
     // console.log(postTitle.value);
     const description = postText.value;
     //  console.log(postText.value);
-    saveTask(title, description, usuario);
-    // taskForm.reset();
+    saveTask(title, description, auth.currentUser.displayName);
+    taskForm.reset();
   });
 
   getTask().then(() => {
@@ -73,7 +73,7 @@ export const feed = (onNavigate) => {
     // let html = '';
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      /* html += `
+        /*html += `
         <div class= 'postIndividual'>
           <div class='postHeader'>
             <img src='img/user-circle-regular-24.png'>
@@ -96,8 +96,13 @@ export const feed = (onNavigate) => {
       const postHeader = document.createElement('div');
       // agregando una clase al elemento
       postHeader.classList.add('postHeader');
-      // nuevo HTML que estamos creando += agrega la info que va a leer como HTML
-      postHeader.innerHTML += "<img src='img/user-circle-regular-24.png'><h5>Nombre de usuario</h5>";
+      // Aquí checamos si hay autor
+      if (post.author !== null && post.author !== undefined) {
+        postHeader.innerHTML += `<img src='img/user-circle-regular-24.png'><h5>${post.author}</h5>`;
+      } else {
+        // nuevo HTML que estamos creando += agrega la info que va a leer como HTML
+        postHeader.innerHTML += "<img src='img/user-circle-regular-24.png'><h5>Invitado</h5>";
+      }
 
       const postTitle2 = document.createElement('p');
       postTitle2.classList.add('postTitle');
@@ -130,10 +135,10 @@ export const feed = (onNavigate) => {
           boton.classList.add('active');
         }
       });
-      console.log(post);
+      //console.log(post);
     });
     // feedContainer.innerHTML = html;
-    console.log(feedContainer);
+    //console.log(feedContainer);
   });
 
   btnLogOut.addEventListener('click', () => {

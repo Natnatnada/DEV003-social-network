@@ -12,6 +12,7 @@ import {
   addDoc,
   // getDoc,
   query,
+  // doc,
   getDocs,
   onSnapshot,
 } from 'firebase/firestore';
@@ -39,6 +40,7 @@ export function signOff() {
 export function getUser(user) {
   return onAuthStateChanged(auth, user);
 }
+
 // funcion para guardar tareas/post en firestore
 export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
@@ -48,16 +50,16 @@ export const getTask = async () => {
   console.log(docSnap);
   docSnap.forEach((doc) => {
   console.log(doc.data());
-  }); */ 
+  }); */
 
- // guardas en la constante q lo que obtengas de la búsqueda de la colección que se llame task dentro de la base de datos
+  // guardas en la constante q lo que obtengas de la búsqueda de la colección que se llame task dentro de la base de datos
   const q = query(collection(db, 'task'));
-//me va a regresar la colección
+  // me va a regresar la colección
   const querySnapshot = await getDocs(q);
-  //crea un array con cada uno de los post
+  // crea un array con cada uno de los post
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, '=>', doc.data());
+    //console.log(doc.id, '=>', doc.data());
   });
 };
 export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);
