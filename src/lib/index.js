@@ -10,10 +10,12 @@ import {
 import {
   collection,
   addDoc,
-  getDoc,
+  // getDoc,
   query,
-  where,
   getDocs,
+  onSnapshot,
+  deleteDoc,
+  doc,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -57,3 +59,8 @@ export const getTask = async () => {
     console.log(doc.id, '=>', doc.data());
   });
 };
+// funcion para obtener post en tiempo real
+export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);
+
+// funcion para delete post
+export const deletePost = (id) => deleteDoc(doc(db, 'task', id));
