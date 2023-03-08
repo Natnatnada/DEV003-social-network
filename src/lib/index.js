@@ -10,9 +10,9 @@ import {
 import {
   collection,
   addDoc,
-  // getDoc,
+  getDoc,
   query,
-  // doc,
+  doc,
   getDocs,
   onSnapshot,
 } from 'firebase/firestore';
@@ -41,6 +41,7 @@ export function getUser(user) {
   return onAuthStateChanged(auth, user);
 }
 
+
 // funcion para guardar tareas/post en firestore
 export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
@@ -59,7 +60,7 @@ export const getTask = async () => {
   // crea un array con cada uno de los post
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    //console.log(doc.id, '=>', doc.data());
+    console.log(doc.id, '=>', doc.data());
   });
 };
 export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);

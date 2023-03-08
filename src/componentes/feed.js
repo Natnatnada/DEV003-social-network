@@ -1,11 +1,8 @@
-/* eslint-disable indent */
 import {
-  signOff, saveTask, getTask, obtenerPost, getUser
+  signOff, saveTask, getTask, obtenerPost,
 } from '../lib';
 import { auth } from '../lib/firebase';
 // eslint-disable-next-line no-unused-vars
-// const usuario = auth.userInfo;
-
 export const feed = (onNavigate) => {
 // ========Creamos los elementos de nuestro feed===========
   const div = document.createElement('div');
@@ -14,7 +11,7 @@ export const feed = (onNavigate) => {
   const subTitle = document.createElement('h2');
   const taskForm = document.createElement('form');
   const postTitle = document.createElement('input');
-  // se crea div para innetHtml
+  // se crea div para innerHtml
   const feedContainer = document.createElement('div');
   // se crea const para texto del post
   const headerPost = document.createElement('h3');
@@ -66,7 +63,7 @@ export const feed = (onNavigate) => {
   });
 
   getTask().then(() => {
-    console.log();
+// console.log('hola muro');
   });
 
   obtenerPost((querySnapshot) => {
