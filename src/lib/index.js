@@ -45,21 +45,17 @@ export function getUser(user) {
 export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
 export const getTask = async () => {
-  /* const getPost = collection(db, 'task');
-  const docSnap = await getDoc(getPost);
-  console.log(docSnap);
-  docSnap.forEach((doc) => {
-  console.log(doc.data());
-  }); */
+  
+
   const q = query(collection(db, 'task'));
 
   const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
+
+  querySnapshot.forEach((document) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, '=>', doc.data());
+    // console.log(doc.id, '=>', doc.data());
   });
 };
-
 export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);
 
 export const savePost = (post) => {
