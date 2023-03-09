@@ -16,6 +16,7 @@ import {
   onSnapshot,
   updateDoc,
   doc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -45,8 +46,6 @@ export function getUser(user) {
 export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
 export const getTask = async () => {
-  
-
   const q = query(collection(db, 'task'));
 
   const querySnapshot = await getDocs(q);
@@ -71,3 +70,4 @@ export const savePost = (post) => {
 };
 export const getPost = (id) => getDoc(doc(db, 'task', id));
 export const updatePost = (id, newInfo) => updateDoc(doc(db, 'task', id), newInfo);
+export const deletePost = (id) => deleteDoc(doc(db, 'task', id));

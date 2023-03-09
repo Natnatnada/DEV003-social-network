@@ -252,7 +252,16 @@ body {
         background-color: rgb(251, 250, 205);
         color: rgb(144, 94, 150);
     } 
-    
+    .headerPost{
+        font-family: 'Rasa', serif;
+        font-size: 25px;
+        text-align: center;
+        margin-top: 4%;
+        padding: 1%;
+
+
+
+    }
     .botones {
         /* background: rgb(222, 186, 206); */
         background: rgb(81, 36, 86);
@@ -297,8 +306,14 @@ body {
     .errors {
         /*estilo*/
         font-family: Arial, Helvetica, sans-serif;
-        color: red;
-        justify-content: center;
+
+        color: #602a92;
+        border: 4px solid rgb(119, 53, 89);;
+        border-radius: 10px;
+        padding: 10px 25px;
+        background: transparent;
+        max-width: 300px;
+        height: 40px;
     }
     
     .hide {
@@ -329,30 +344,48 @@ body {
     } */
     
     .postIndividual{
-        background-color: white;
+        background-color: rgb(160, 91, 129);
         text-align: center;
         justify-content: space-between;
-        width: 25rem;
-        height: 6rem;
+        width: 80%;
+        height: 10rem;
         margin: 2rem auto 2rem;
-        border-radius: 10%;
+        border: 3px solid rgb(119, 53, 89);
+        box-shadow: 15px 15px 30px #d2c2d3;
+        border-radius: 40px 0 40px 0;
+        padding: 2%;
     }
+    .postHeader{
+        display: flex;
+        color:rgb(60, 23, 65);
+    }
+    h5{
+        color: rgb(48, 15, 53);
+        font-family: 'Rasa', serif;
+        
 
-    #tituloMuro {
+    }
+        #tituloMuro {
         display: flex;
         justify-content: center;
         align-self: flex-start;
         margin: 0.2rem;
     }
     
-    #postTitle {
+    .postTitle {
+        font-family: 'Rasa', serif;
+        font-size: 20px;
         display: flex;
         justify-content: center;
         align-self: center;
         flex-direction: column;
         text-align: center;
-        color: black;
-        margin: 1rem;
+        color: rgb(60, 23, 65);
+        border: 3px solid rgb(119, 53, 89);
+        border-radius: 40px 40px 0 0 ;
+        width: 80%;
+        height: 2rem;
+    }
     }
 
     #taskForm {
@@ -360,29 +393,66 @@ body {
         justify-content: center;
         align-self: center;
         flex-direction: column;
-        margin: 1rem;
+
     }
-    #postText {
+    .postText {
+        font-family: 'Rasa', serif;
+        font-size: 20px;
         display: flex;
         justify-content: center;
         align-self: center;
         flex-direction: column;
         text-align: center;
-        margin: 1rem;
+        width: 80%;
+        height: 5rem;
+        border: 3px solid rgb(119, 53, 89);
+        color: black;
+        
     }
-    #botonGuardar {
-        display: flex;
+    .botonGuardar {
         justify-content: center;
         align-self: center;
-        margin: 0.2rem;
+        display: flex;
+        background-color: rgb(119, 53, 89);
+        color: white;
+        cursor: pointer;
+        border: none;
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        border-radius: .25rem;
+        width: 80%;
+        border-radius: 0 0 40px 40px;
+    }
+    .botonGuardar:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        background-color: rgb(60, 23, 65);
+    }
+    .botonGuardar:active {
+        transform: translateY(4px) translateX(4px);
+        box-shadow: #094c66 0px 0px 0px;
+      }
+    .postTitle2{
+        color: rgb(0, 0, 0);
+        font-family: 'Rasa', serif;
+        font-size: 25px;    
+        text-align: center;
+    }
+    .description-text{
+        color: black;
+        font-family: 'Rasa', serif;
+        font-size: 20px;
+        text-align: center;
     }
 
-}
-.description-text{
-    font-family: Arial, Helvetica, sans-serif;
-    color: darkslateblue;
+.deletebtn{
+    background-image: url("img/trash-regular-24.png");
+    width: 20px;
+    height: 20px;
     justify-content: center;
-
+    background-position:center;
+    align-items: center;
+    background-size: cover;
 }
 
 /*tabletas (768px), */

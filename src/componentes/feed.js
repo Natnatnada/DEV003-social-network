@@ -1,6 +1,7 @@
 import {
   signOff, saveTask, getTask, obtenerPost, savePost, updatePost,
-  getPost,
+  deletePost,
+  // getPost,
 } from '../lib';
 import { auth, db } from '../lib/firebase';
 // eslint-disable-next-line no-unused-vars
@@ -16,14 +17,15 @@ export const feed = (onNavigate) => {
   const feedContainer = document.createElement('div');
   // se crea const para texto del post
   const headerPost = document.createElement('h3');
-  const postText = document.createElement('textarea');
+  const postText = document.createElement('input');
   const botonGuardar = document.createElement('button');
   const btnLogOut = document.createElement('button');
   // const postHeader = document.createElement('div'); postHeader.classList.add('postHeader');
   // =====Escribimos la info dentro de los elementos=====
   postTitle.type = 'text';
   headerPost.textContent = 'Bienvenida a tu muro';
-  postTitle.placeholder = 'Escribe aquí lo que piensas';
+  postTitle.placeholder = '¿Que noticia quieres compartir hoy?';
+  postText.placeholder = 'Agregar texto aqui ';
   botonGuardar.textContent = 'Guardar';
   btnLogOut.textContent = 'Cerrar sesión';
   btnLogOut.className = 'botones';
@@ -33,6 +35,10 @@ export const feed = (onNavigate) => {
   feedContainer.className = 'muroContainer';
   titleCiber.textContent = '<CiberFem>';
   subTitle.textContent = 'Inspiración para programadoras';
+  postTitle.className = 'postTitle';
+  postText.className = 'postText';
+  headerPost.className = 'headerPost';
+  botonGuardar.className = 'botonGuardar';
   // ============Damos clases a los elementos==============
   divPadre.className = 'divPadre';
 
@@ -65,7 +71,6 @@ export const feed = (onNavigate) => {
 
   getTask().then(() => {
 
-    // console.log('hola muro');
   });
   let editStatus = false;
   let id = '';
@@ -82,7 +87,7 @@ export const feed = (onNavigate) => {
       // Aquí checamos si hay autor
 
       const postTitle2 = document.createElement('p');
-      postTitle2.classList.add('postTitle');
+      postTitle2.classList.add('postTitle2');
       postTitle2.append(`${post.title}`);
 
       const postDescription = document.createElement('p');
@@ -94,9 +99,14 @@ export const feed = (onNavigate) => {
 
       const likeBtn = document.createElement('button');
       const editBtn = document.createElement('button');
+      // boton para delete
+      const deletebtn = document.createElement('button');
       editBtn.textContent = 'Editar';
       editBtn.classList.add('btnEdit');
       likeBtn.classList.add('likeBtn');
+      // innerHtml para el button delete, se agrega el data-id para dunion
+      deletebtn.innerHTML += `<button class='deletebtn' data-id='${doc.id}'></button>
+      </div>`;
       likeBtn.innerHTML += "<img src='img/heart-regular-24.png'><img src='img/heart-solid-24.png'>";
       if (post.author !== null && post.author !== undefined) {
         postHeader.innerHTML += `<img src='img/user-circle-regular-24.png'><h5>${post.author}</h5>`;
@@ -105,7 +115,8 @@ export const feed = (onNavigate) => {
         postHeader.innerHTML += "<img src='img/user-circle-regular-24.png'><h5>Invitado</h5>";
       }
       // En lugar de escribirlo en HTML lo escribimos como elementos para manipularlos
-      postFooter.append(likeBtn, editBtn);
+      postFooter.append(likeBtn, editBtn, deletebtn);
+
       postIndividual.append(postHeader, postTitle2, postDescription, postFooter);
       feedContainer.append(postIndividual);
       // detectamos si el boton está prendido o está apagado
@@ -161,8 +172,19 @@ export const feed = (onNavigate) => {
         botonGuardar.textContent = 'Publicar';
       });
     }); */
-    console.log(feedContainer);
     // console.log(post);
+
+    // funcion para el boton delete
+    const buttonsdelete = feedContainer.querySelectorAll('.deletebtn');
+    console.log(buttonsdelete);
+    buttonsdelete.forEach((button) => {
+      // event es un objeto por lo que se extrae el target
+      button.addEventListener('click', ({ target: { dataset } }) => {
+        // console.log(event.target.dataset.id);
+        // console.log(dataset.id);
+        deletePost(dataset.id);
+      });
+    });
   });
   // feedContainer.innerHTML = html;
   // console.log(feedContainer);
